@@ -161,7 +161,7 @@ if (favourite !== 23) {
 } else {
     console.log(`${23} it is`);
 }
-*/
+
 
 // --- Switch Case--
 const day = 'wednesday';
@@ -187,3 +187,14 @@ switch (day) {
     default:
         console.log("Not a valid day");
 }
+*/
+
+// -----Ternary Opr ------/
+
+const age = 23;
+age >= 18 ? console.log(`I am allowed to drink alcohol.`) : console.log("I'm not allowed!");
+
+const drink = age >= 18 ? 'alcohol' : "water";
+console.log(drink);
+
+console.log(`I like to drink ${age >= 18 ? "alcohol" : "water"}`);
