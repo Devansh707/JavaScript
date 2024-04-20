@@ -88,9 +88,10 @@ const yearsUntilRetirement = function (birthYear, firstName) {
 }
 console.log(yearsUntilRetirement(1991, "David"));
 console.log(yearsUntilRetirement(1970, "Maradona"));
-*/
+
 
 // --------- Arrays -----//
+//  We can mutate/change array values even though they are declared const. Because JS stores value in memory
 
 const freind1 = "Michael";
 const freind2 = "Steven";
@@ -99,7 +100,7 @@ const freind3 = "Peter";
 const freinds = ["Michael", "Steven", "Peter"];
 console.log(freinds);
 
-const years = new Array(1991, 1984, 2008, 2022);
+const y = new Array(1991, 1984, 2008, 2022);
 const days = new Array(4);
 console.log(days.length);
 
@@ -108,5 +109,71 @@ console.log(freinds[0]);
 const months = new Array("jan", "feb", "match");
 console.log(months);
 
-freinds[2] = "Jay";
+freinds[2] = "Jay"; // we can change const array values
 console.log(freinds);
+// freinds = ["bob", "Alice"]; //  we cannot change whole array;
+
+const firstName = "Devansh";
+const jon = [firstName, "Srivastava", 2020 - 2000,  "Software Enginerr", freinds];
+console.log(jon);
+console.log(jon.length);
+
+const calcAge = function (birthYear) {
+    return 2037 - birthYear;
+}
+
+const years = [2020, 2019, 2018, 2015];
+
+// calcalcAge(years);  -> Error - NaN
+
+const a1 = calcAge(years[0]);
+const a2 = calcAge(years[1]);
+const a3 = calcAge(years[years.length - 1]);
+console.log(a1, a2, a3);
+
+const ages = [calcAge(years[0]), calcAge([years[1]]), calcAge([years.length - 1])];
+console.log(ages)
+*/
+//  ------ Array Methods/ Operations -----/
+
+// Add Elements : 
+
+// Push method = It will add the new element to last and returns the length of the new array;
+const freinds = ["Michael", "Steven", "Peter"];
+const newLen = freinds.push("Jason");
+console.log(freinds);
+console.log(`New Length = ${newLen}`);
+
+// Unshift method = It will add the element to first place and returns the length of the new array
+freinds.unshift("Joy");
+
+// Remove Elements: 
+ 
+// Pop Method :  Removes the last element of the array and returns the popped/removed value
+const poppedValue = freinds.pop();
+console.log(freinds);
+console.log(`Popped/Removed Element = ${poppedValue}`);
+
+// Shift Method : It will remove/delete first element of the array and returns the popped/removed value
+const firstELem = freinds.shift();
+console.log(freinds);
+console.log(`Popped/Removed Element = ${firstELem}`);
+
+// Other Methods : 
+
+// indexOf method :
+console.log(freinds.indexOf("Steven"));
+console.log(freinds.indexOf("Bob"));  // it will return -1
+
+// Include Method : It will return true/false whether the element is present or not in the array.
+console.log(freinds.includes("Steven"));
+console.log(freinds.includes("Bob")); 
+freinds.push(23);
+console.log(freinds.includes(23));
+
+const harry = "Harry";
+freinds.push(harry);
+if(freinds.includes(harry)){
+    console.log(`You have freind called ${harry}`);
+}
+
