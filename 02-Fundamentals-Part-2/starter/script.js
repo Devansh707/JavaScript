@@ -133,7 +133,9 @@ console.log(a1, a2, a3);
 
 const ages = [calcAge(years[0]), calcAge([years[1]]), calcAge([years.length - 1])];
 console.log(ages)
-*/
+
+
+=======
 //  ------ Array Methods/ Operations -----/
 
 // Add Elements : 
@@ -176,4 +178,66 @@ freinds.push(harry);
 if(freinds.includes(harry)){
     console.log(`You have freind called ${harry}`);
 }
+
+ //  Assignment 
+const calcTip = function(bill) {
+    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+}
+
+const calcTip2 = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip2(bills[1]), calcTip2(bills[2])];
+console.log(`Bills = ${bills}`);
+console.log(`Tips = ${tips}`);
+
+*/
+
+//  ------ Introduction Of Objects ----/
+
+// Difference between Arrays and Objects is that in Arrays we access data in the order . But in Objects order is not important for accessing the data.
+
+const jonArrays = [
+    "Jon",
+    "Bill",
+    2020 - 1991,
+    ["Mike", "Phil", "Tyson"]
+];
+
+const jonObjects = {
+    firstName : "Jon",
+    lastName : "Bill",
+    age : 2020 - 1991,
+    freinds : ["Mike", "Phil", "Tyson"],
+    job : "Software Engineer"
+};
+console.log(jonObjects);
+
+//  Change and Retrieve Data from the Objects
+console.log(`LastName = ${jonObjects.lastName} and Age = ${jonObjects.age}`);
+
+const Name = "Name";
+console.log(`First Name = ${jonObjects["first" + Name]}`);
+console.log(`Last Name = ${jonObjects["last" + Name]}`);
+
+const interestedIn = prompt("What do you want to Know ? firstName, lastname, age,  job?");
+
+console.log(interestedIn);
+
+if(jonObjects[interestedIn]){
+    console.log(jonObjects[interestedIn]);
+} else {
+    console.log("Wrong request !");
+}
+
+// Adding Property to objects
+jonObjects.location = "Paris";
+jonObjects["country"] = "France";
+console.log(jonObjects);
+
+//  Challenge =>  Jon has 3 freinds and fetch the the best freind Mike
+
+const  bestFreind = jonObjects.freinds;
+console.log("BestFreind = " + bestFreind[0]);
+=======
 
