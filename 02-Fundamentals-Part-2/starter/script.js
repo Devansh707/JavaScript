@@ -134,6 +134,8 @@ console.log(a1, a2, a3);
 const ages = [calcAge(years[0]), calcAge([years[1]]), calcAge([years.length - 1])];
 console.log(ages)
 
+
+=======
 //  ------ Array Methods/ Operations -----/
 
 // Add Elements : 
@@ -176,6 +178,7 @@ freinds.push(harry);
 if(freinds.includes(harry)){
     console.log(`You have freind called ${harry}`);
 }
+
  //  Assignment 
 const calcTip = function(bill) {
     return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
@@ -236,3 +239,5 @@ console.log(jonObjects);
 
 const  bestFreind = jonObjects.freinds;
 console.log("BestFreind = " + bestFreind[0]);
+=======
+
