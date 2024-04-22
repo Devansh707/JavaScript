@@ -46,8 +46,8 @@ const calcAge2 = function (birthYear) {
 }
 
 
-// ----- Arrow Functions -> 
-const calcAge3 = birthYear => 2037 - birthYear; //  we don't have to write explicitly return statement 
+// ----- Arrow Functions ->
+const calcAge3 = birthYear => 2037 - birthYear; //  we don't have to write explicitly return statement
 const age2 = calcAge3(1995);
 console.log(age2);
 
@@ -135,10 +135,10 @@ const ages = [calcAge(years[0]), calcAge([years[1]]), calcAge([years.length - 1]
 console.log(ages)
 
 
-=======
+
 //  ------ Array Methods/ Operations -----/
 
-// Add Elements : 
+// Add Elements :
 
 // Push method = It will add the new element to last and returns the length of the new array;
 const freinds = ["Michael", "Steven", "Peter"];
@@ -149,8 +149,8 @@ console.log(`New Length = ${newLen}`);
 // Unshift method = It will add the element to first place and returns the length of the new array
 freinds.unshift("Joy");
 
-// Remove Elements: 
- 
+// Remove Elements:
+
 // Pop Method :  Removes the last element of the array and returns the popped/removed value
 const poppedValue = freinds.pop();
 console.log(freinds);
@@ -161,7 +161,7 @@ const firstELem = freinds.shift();
 console.log(freinds);
 console.log(`Popped/Removed Element = ${firstELem}`);
 
-// Other Methods : 
+// Other Methods :
 
 // indexOf method :
 console.log(freinds.indexOf("Steven"));
@@ -169,7 +169,7 @@ console.log(freinds.indexOf("Bob"));  // it will return -1
 
 // Include Method : It will return true/false whether the element is present or not in the array.
 console.log(freinds.includes("Steven"));
-console.log(freinds.includes("Bob")); 
+console.log(freinds.includes("Bob"));
 freinds.push(23);
 console.log(freinds.includes(23));
 
@@ -179,7 +179,7 @@ if(freinds.includes(harry)){
     console.log(`You have freind called ${harry}`);
 }
 
- //  Assignment 
+ //  Assignment
 const calcTip = function(bill) {
     return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
 }
@@ -191,7 +191,7 @@ const tips = [calcTip(bills[0]), calcTip2(bills[1]), calcTip2(bills[2])];
 console.log(`Bills = ${bills}`);
 console.log(`Tips = ${tips}`);
 
-*/
+
 
 //  ------ Introduction Of Objects ----/
 
@@ -205,11 +205,11 @@ const jonArrays = [
 ];
 
 const jonObjects = {
-    firstName : "Jon",
-    lastName : "Bill",
-    age : 2020 - 1991,
-    freinds : ["Mike", "Phil", "Tyson"],
-    job : "Software Engineer"
+    firstName: "Jon",
+    lastName: "Bill",
+    age: 2020 - 1991,
+    freinds: ["Mike", "Phil", "Tyson"],
+    job: "Software Engineer"
 };
 console.log(jonObjects);
 
@@ -224,7 +224,7 @@ const interestedIn = prompt("What do you want to Know ? firstName, lastname, age
 
 console.log(interestedIn);
 
-if(jonObjects[interestedIn]){
+if (jonObjects[interestedIn]) {
     console.log(jonObjects[interestedIn]);
 } else {
     console.log("Wrong request !");
@@ -237,7 +237,82 @@ console.log(jonObjects);
 
 //  Challenge =>  Jon has 3 freinds and fetch the the best freind Mike
 
-const  bestFreind = jonObjects.freinds;
+const bestFreind = jonObjects.freinds;
 console.log("BestFreind = " + bestFreind[0]);
-=======
+
+
+//  ----------- Object Methods -----/
+
+const jonas = {
+    firstName: 'Jonas',
+    lastName: 'Peter',
+    birthYear: 1994,
+    job: 'Sofrtware Engineer',
+    freinds: ["Mike", "David", "Steve"],
+    hasDriversLicense: true,
+
+    // calcAge: function (birthYear) {  // Object Method
+    //     return 2020 - birthYear;
+    // }
+    // calcAge: function () {  // Object Method
+    //     console.log(this);
+    //     return 2020 - this.birthYear;
+    // }
+
+    calcAge: function () {  // Object Method
+        this.age = 2020 - this.birthYear;
+        return this.age;
+    },
+
+    getSummary: function () {
+        return `${this.firstName} is ${this.calcAge()} years old ${this.job}, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`
+    }
+}
+
+console.log(jonas.age); //  undefined
+
+console.log(jonas.calcAge(1999));
+// console.log(jonas["calcAge"](2001));
+// console.log(jonas.calcAge(jonas.birthYear));
+console.log(jonas.age);
+
+// Challenge ->  write a summary method -> "Jonas is 20 years old ${job}, and he has a/no driver's license."
+
+console.log(jonas.getSummary());
+*/
+
+//  Challenge 
+const mark = {
+    fullName: "Mark Miller",
+    mass: 80,
+    height: 1.81,
+
+    calBMI: function () {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+    }
+}
+
+const john = {
+    fullName: "John Smith",
+    mass: 92,
+    height: 1.95,
+
+    calBMI: function () {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+    }
+}
+
+mark.calBMI();
+john.calBMI();
+
+console.log(john.bmi);
+console.log(mark.bmi);
+
+if (john.bmi > mark.bmi) {
+    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`);
+} else {
+    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})!`);
+}
 
