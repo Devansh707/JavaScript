@@ -14,8 +14,7 @@ document.querySelector('.guess').value = 25;
 console.log(document.querySelector('.guess').value);
 */
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = secretNumber;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
 
@@ -36,6 +35,7 @@ document.querySelector('.check').addEventListener('click', function () {
     // when Player wins
     document.querySelector('.message').textContent =
       'Wohoo !! Correct Number!!';
+    document.querySelector('.number').textContent = secretNumber;
 
     document.querySelector('body').style.backgroundColor = '#60b437';
     document.querySelector('.number').style.width = '30rem';
@@ -50,4 +50,17 @@ document.querySelector('.check').addEventListener('click', function () {
     score--;
     document.querySelector('.score').textContent = score;
   }
+});
+
+//  Coding Challenge
+document.querySelector('.again').addEventListener('click', function () {
+  score = 20;
+  document.querySelector('.score').textContent = score;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+  document.querySelector('.guess').value = null;
+  document.querySelector('.message').textContent = 'Start guessing...';
+
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
 });
