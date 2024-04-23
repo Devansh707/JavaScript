@@ -33,8 +33,12 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent =
       'No Number! Please Enter a Number to check the guess.';
   } else if (guess === secretNumber) {
+    // when Player wins
     document.querySelector('.message').textContent =
       'Wohoo !! Correct Number!!';
+
+    document.querySelector('body').style.backgroundColor = '#60b437';
+    document.querySelector('.number').style.width = '30rem';
   } else if (guess > secretNumber) {
     document.querySelector('.message').textContent =
       'Too High Guess!! Please Lower your guess!!';
