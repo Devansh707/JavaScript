@@ -7,7 +7,7 @@ if (passTest) hasDriversLicense = true;
 if (hasDriversLicense) console.log('I can drive.');
 
 // const interface = 'Audio';
-// const private = 12;
+const private = 12;
 
 
 // ----- Functions ------/
@@ -279,7 +279,7 @@ console.log(jonas.age);
 // Challenge ->  write a summary method -> "Jonas is 20 years old ${job}, and he has a/no driver's license."
 
 console.log(jonas.getSummary());
-*/
+
 
 //  Challenge 
 const mark = {
@@ -316,3 +316,97 @@ if (john.bmi > mark.bmi) {
     console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})!`);
 }
 
+
+// ------ Iteration : Loops -------//
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights reps ${rep} 🏋️`);
+}
+*/
+
+// ------- Looping Arrays, Breaking and Continue ----//
+
+const jonas = [
+    "Jon",
+    "Bill",
+    2020 - 1991,
+    ["Mike", "Phil", "Tyson"],
+    "Software Engineer"
+];
+
+for (let i = 0; i < jonas.length; i++) {
+    console.log(jonas[i], typeof jonas[i]);
+}
+
+const types = [];
+for (let i = 0; i < jonas.length; i++) {
+    // types[i] = typeof jonas[i];
+    types.push(typeof jonas[i]);
+}
+
+console.log(types);
+
+const birthYear = [1997, 1999, 2000, 2010, 2001];
+const ages = [];
+for (let i = 0; i < birthYear.length; i++) {
+    ages.push(2024 - birthYear[i]);
+}
+console.log(ages);
+
+//  ------- Continue and Break ------//
+
+console.log(`------ Only Strings ------`);
+for (let i = 0; i < jonas.length; i++) {
+    if (typeof jonas[i] !== "string") continue; // continue only skips the current iteration
+    console.log(jonas[i], typeof jonas[i]);
+}
+
+console.log(`------ Break ------`);
+for (let i = 0; i < jonas.length; i++) {
+    if (typeof jonas[i] === "number") break; // break terminates the loop as soon as the condition is met
+    console.log(jonas[i], typeof jonas[i]);
+}
+
+// --- backward loop--//
+console.log(`------ Backward Loop ------`);
+for (let i = jonas.length - 1; i >= 0; i--) {
+    console.log(jonas[i], typeof jonas[i], i);
+}
+
+for (let i = 1; i < 4; i++) {
+    console.log(`----- Starting Exercise ${i} ----- `);
+
+    for (let j = 1; j < 5; j++) {
+        console.log(`Exercise ${i} : Lifting weight rep ${j}`);
+    }
+}
+
+// ---- While Loop ---//
+// for (let rep = 1; rep <= 10; rep++) {
+//     console.log(`Lifting weights reps ${rep} 🏋️`);
+// }
+
+console.log("------------- While Loop -------------");
+let rep = 1;
+while (rep <= 10) {
+    console.log(`Lifting weights reps ${rep} 🏋️`);
+    rep++;
+}
+
+let d = 1;
+while (d) {
+    if (d === 6) {
+        break;
+    }
+    console.log(`Dice No : ${d}`);
+    d++;
+}
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+while (dice !== 6) {
+    console.log(`You Rolled dice no. : ${dice}`);
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) {
+        console.log(`Loop is about to end .....`);
+    }
+}
