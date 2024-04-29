@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
 // /Destructuring of arrays
 // Data needed for a later exercise
 const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // Data needed for first part of the section
 const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
 
   openingHours: {
     thu: {
@@ -34,7 +34,7 @@ const restaurant = {
   orderDelivery: function ({
     starterIndex = 1,
     mainIndex = 0,
-    time = '20:00',
+    time = "20:00",
     address,
   }) {
     console.log(
@@ -53,6 +53,35 @@ const restaurant = {
   },
 };
 
+// Logical oprtr can use any data type, return any data type and short-circuiting
+console.log(4 || "Jonas");
+console.log("" || "Jonas");
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || "" || null || "Hello" || 23 || null);
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+
+restaurant.numGuests = 23;
+const guest2 = restaurant.numGuests || 20;
+console.log(guest2);
+
+console.log(`------------AND----------------`);
+console.log(0 && "Jonas");
+console.log(7 && "Jon");
+
+console.log("Jon" && 23 && null && "john");
+
+// practical examples
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("paneer", "cheese", "chili flakes", "onion");
+}
+
+restaurant.orderPizza &&
+  restaurant.orderPizza("paneer", "cheese", "chili flakes", "onion");
+
+/*
 // 1. De Structuring
 // ---------- Rest Patterns ---------------
 
@@ -94,7 +123,7 @@ restaurant.orderPizza('paneer', 'onion', 'cheeze', 'chicken');
 restaurant.orderPizza('paneer');
 
 // ---------------------- Spread Operator--------
-/*
+
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
 console.log(`Bad new Array = `, badNewArr);
