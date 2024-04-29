@@ -218,8 +218,39 @@ console.log(`Freind = `, friend);
 console.log(`me = `, me);
 */
 
+// Primitive types
 let lastName = "Wiilliams";
 let oldLastName = lastName;
 lastName = "Davis";
 console.log(`LastName = `, lastName);
 console.log(`Old LastName = `, oldLastName);
+
+// Reference Types
+const jessica = {
+  firstName: "Jessice",
+  lastName: "Williams",
+  age: 27,
+};
+
+const marriedJessice = jessica;
+marriedJessice.lastName = "Davis";
+// console.log(`Before Marriage : `, jessica);
+// console.log(`After Marriage : `, marriedJessice);
+
+// marriedJessice = {};
+
+// Copying Objects
+const jessica2 = {
+  firstName: "Jessice",
+  lastName: "Williams",
+  age: 27,
+  family: ["Alice", "Pop"],
+};
+const jessicaCopy = Object.assign({}, jessica2); // it will create a shallow copy
+jessicaCopy.lastName = "Davies";
+
+jessicaCopy.family.push("David");
+jessicaCopy.family.push("Alex");
+
+console.log(`Before Marriage : `, jessica2);
+console.log(`After Marriage : `, jessicaCopy);
