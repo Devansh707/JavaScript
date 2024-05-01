@@ -57,11 +57,132 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+//  -------------- Strings -2 --------//
+const airLine = "TAP Air Portugal";
+console.log(airLine.toLowerCase());
+console.log(airLine.toUpperCase());
 
+const email = "hello@jonas.io";
+const loginEmail = "   Hello@Jonas.Io \n";
+const normalEmail = loginEmail.toLowerCase().trim();
+console.log(email === normalEmail);
+
+// replacing
+const pricsGB = "398,97";
+const priceUS = pricsGB.replace(",", ".");
+console.log(priceUS);
+
+const announcement =
+  "All passengers come to boarding door 23. Boarding door 23!";
+
+console.log(announcement.replace("door", "gate"));
+// console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, "gate"));
+
+// Booleans
+const plane = "Airbus A320neo";
+console.log(plane.includes("A320"));
+console.log(plane.includes("Boeing"));
+console.log(plane.startsWith("Airb"));
+
+if (plane.startsWith("Airbus") && plane.endsWith("neo")) {
+  console.log("Part of the NEW ARirbus family");
+}
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log("You are NOT allowed on board");
+  } else {
+    console.log("Welcome aboard!");
+  }
+};
+
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
+
+//  ---- String Split ---- //
+console.log("a+very+nice+string".split("+"));
+const [firstName, lastName] = "Jonas Schmedtmann".split(" ");
+
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+
+  for (let word of names) {
+    namesUpper.push(word[0].toLowerCase() + word.slice(1));
+  }
+  return namesUpper;
+};
+
+const n1 = capitalizeName("jessica ann smith davis");
+const n2 = capitalizeName("jonas schmedtmann");
+console.log(n1, n2);
+
+// Padding
+const message = "Go to gate 23!";
+console.log(message.padStart(20, "+").padEnd(30, "+"));
+console.log("Jonas".padStart(20, "+").padEnd(30, "+"));
+
+const maskCreditCard = function (number) {
+  const str = number + "";
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+
+console.log(maskCreditCard(64637836));
+console.log(maskCreditCard(43378463864647384));
+console.log(maskCreditCard("334859493847755774747"));
+
+// Repeat
+const message2 = "Bad waether... All Departues Delayed... ";
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${"🛩".repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+/* 
+//  -------------- Strings --------//
+// Strings cannot be changed, they are immutable and primitive
+
+const airLine = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]);
+console.log(Number(plane[1]));
+console.log(plane[2]);
+console.log("B737"[0]);
+console.log(airLine.length);
+console.log("B737".length);
+
+console.log(airLine.indexOf("r"));
+console.log(airLine.lastIndexOf("r"));
+console.log(airLine.indexOf("Portugal"));
+
+console.log(airLine.slice(4));
+console.log(airLine.slice(airLine.indexOf("Air")));
+
+console.log(airLine.slice(4, 7));
+
+console.log(airLine.slice(0, airLine.indexOf(" ")));
+console.log(airLine.slice(airLine.lastIndexOf(" ") + 1));
+
+console.log(new String("jonas"));
+console.log(typeof new String("jon"));
+console.log(typeof new String("joans").slice(1));
 ///////////////////////////////////////
 // Coding Challenge #3
 
-/* 
+
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
@@ -72,6 +193,8 @@ Let's continue with our football betting app! This time, we have a map with a lo
 
 GOOD LUCK 😀
 */
+
+/*
 
 const gameEvents = new Map([
   [17, "⚽️ GOAL"],
@@ -87,7 +210,36 @@ const gameEvents = new Map([
   [92, "🔶 Yellow card"],
 ]);
 
-/*
+//1.
+const uniqueEvents = new Set(gameEvents.values());
+console.log(uniqueEvents);
+
+const uniqueEventsArray = [...uniqueEvents];
+console.log(uniqueEventsArray);
+
+//2.
+console.log(gameEvents.delete(64));
+console.log(gameEvents);
+
+//3.
+
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+
+const totalTime = [...gameEvents.keys()].pop();
+console.log(
+  `More Specifically An event happened, on average, every ${
+    totalTime / gameEvents.size
+  } minutes`
+);
+
+for (const [min, value] of gameEvents.entries()) {
+  const half = min <= 45 ? "FIRST" : "SECOND";
+  console.log(`[ ${half} HALF] ${min}: ⚽️ ${value}`);
+}
+
+
 
 //  ---------------- Maps -------------------//
 // const rest = new Map();
