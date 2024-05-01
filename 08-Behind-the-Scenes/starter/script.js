@@ -217,13 +217,14 @@ friend.age = 23;
 console.log(`Freind = `, friend);
 console.log(`me = `, me);
 */
-
 // Primitive types
+
 let lastName = "Wiilliams";
 let oldLastName = lastName;
 lastName = "Davis";
 console.log(`LastName = `, lastName);
 console.log(`Old LastName = `, oldLastName);
+
 
 // Reference Types
 const jessica = {
@@ -254,3 +255,4 @@ jessicaCopy.family.push("Alex");
 
 console.log(`Before Marriage : `, jessica2);
 console.log(`After Marriage : `, jessicaCopy);
+
