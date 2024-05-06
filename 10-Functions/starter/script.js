@@ -333,7 +333,7 @@ booker();
 booker();
 booker();
 
-//  ------ A function always has accesse to the variable environment of the execution context in which it was created, even after that execution context was gone or over.
+//  ------ A function always has accesse to the variable environment(VE) of the execution context in which it was created, even after that execution context was gone or over.
 // ------- Closure : VE attached to the function, exactly as it was at the time and place the function was created.
 
 // -- The booker function has access to the passengerCount variable because it was basically defined in the scope in which booker function was created, so scope chain was actully preserved through closure, even when the scope chain is actually destroyed .
@@ -351,11 +351,11 @@ booker();
 //  We do not have to manually create closures, this is a JS feature that happens automatically. We can't even access closed-over variables explicitly. A closure is NOT a tangible JS object.
 
 console.dir(booker);
-*/
+
 
 // ---- Examples of Closures ---------//
 
-//  We don't need to return functio from another function to create closures.
+//  We don't need to return function from another function to create closures.
 //  Example 1
 let f;
 const g = function () {
@@ -396,3 +396,25 @@ const boardPassengers = function (n, wait) {
 
 const perGroup = 100;
 boardPassengers(180, 3);
+*/
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+This is more of a thinking challenge than a coding challenge 🤓
+
+Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the BODY element is clicked. Do NOT select the h1 element again!
+
+And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
+
+GOOD LUCK 😀
+*/
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
