@@ -92,9 +92,9 @@ const displayMovements = function (movements) {
 };
 // console.log(containerMovements.innerHTML);
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}INR`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}INR`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -139,10 +139,8 @@ btnLogin.addEventListener('click', e => {
   currentAccount = accounts.find(
     acc => acc.userName === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
-    console.log('login');
     // Display UI and Welcome message
     labelWelcome.textContent = `Welcome Back ${
       currentAccount.owner.split(' ')[0]
@@ -156,12 +154,66 @@ btnLogin.addEventListener('click', e => {
     inputLoginPin.blur();
 
     // display movements
-    displayMovements(currentAccount.movements);
     // display balance
-    calcDisplayBalance(currentAccount.movements);
     // display summary
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount);
   }
+});
+
+const updateUI = function (acc) {
+  // display movements
+  displayMovements(acc.movements);
+  // display balance
+  calcDisplayBalance(acc);
+  // display summary
+  calcDisplaySummary(acc);
+};
+
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amount = Number(inputTransferAmount.value);
+  const recieverUserName = inputTransferTo.value;
+
+  let recieverAcc = accounts.find(acc => acc.userName === recieverUserName);
+  console.log(amount, recieverAcc);
+
+  // check if amount is available in current balance
+  if (
+    amount > 0 &&
+    recieverAcc &&
+    currentAccount.balance >= amount &&
+    recieverAcc?.userName !== currentAccount.userName
+  ) {
+    // Do Transfer
+    currentAccount.movements.push(-amount);
+    recieverAcc.movements.push(amount);
+    updateUI(currentAccount);
+  } else {
+    alert('Invalid Credentials');
+    console.log('Invalid Credentials');
+  }
+  inputTransferAmount.value = inputTransferTo.value = '';
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  //check if user name and pin credentials are correct
+  if (
+    currentAccount.userName === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+    console.log(`Index : `, index);
+    // Delete Account
+    accounts.splice(index, 1);
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 createUserNames(accounts);
