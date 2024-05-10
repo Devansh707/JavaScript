@@ -196,6 +196,23 @@ btnTransfer.addEventListener('click', e => {
   inputTransferAmount.value = inputTransferTo.value = '';
 });
 
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // update UI
+    updateUI(currentAccount);
+  } else {
+    // alert
+    alert('Requested amount is more !!');
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -539,3 +556,13 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 */
+
+//  -------- Array Method - some -----//
+console.log(movements);
+
+// Checks only for Equality
+console.log(movements.includes(-130));
+
+//  checks for condition and returns boolean value
+console.log(movements.some(mov => mov === -130));
+console.log(movements.some(mov => mov > 500));
