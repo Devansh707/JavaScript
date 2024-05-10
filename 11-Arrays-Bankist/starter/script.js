@@ -73,6 +73,7 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; // to basically remove/overwrite existing html element.
 
@@ -93,6 +94,7 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
+
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${acc.balance}INR`;
@@ -103,6 +105,7 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}💶`;
+
 
   const outgoing = acc.movements
     .filter(mov => mov < 0)
@@ -555,6 +558,7 @@ const totalDepositsUSD = movements
 
 console.log(totalDepositsUSD);
 
+*/
 
 //  --------- Array Method - Find Method ------------//
 // it will not return the new array unlike the filter method, but it will return the first element that satisfies the condition.
@@ -565,6 +569,7 @@ console.log(movements, firstWithdrawal);
 console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
+
 
 
 //  -------- Array Method - some -----//
@@ -658,3 +663,4 @@ console.log(movements);
 
 movements.sort((a, b) => b - a);
 console.log(movements);
+
