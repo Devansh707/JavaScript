@@ -657,7 +657,7 @@ console.log(movements);
 
 movements.sort((a, b) => b - a);
 console.log(movements);
-*/
+
 
 // -------------- More Ways of creating Arrays ---------//
 const arr = [1, 2, 3, 4, 5, 65, 6];
@@ -687,3 +687,58 @@ labelBalance.addEventListener('click', () => {
   console.log(movementsUI);
   console.log(movementsUI.map(el => Number(el.textContent.replace('INR', ''))));
 });
+*/
+
+//  -------------- Array Methods Practise ---------
+// 1. Task - to get the total sum of bank deposits of all accounts
+
+// const bankDepositSum = accounts.map(acc => acc.movements).flat();
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, curr) => acc + curr, 0);
+
+console.log(bankDepositSum);
+
+// 2. Count how many deposits there have been with atleast 1000
+
+// const deposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// console.log(deposits1000);
+
+const deposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, curr) => (curr >= 1000 ? count + 1 : count), 0);
+console.log(deposits1000);
+
+// 3. Create a new Object which contains the sum of their deposits and sum of their withdrawls
+
+const sumOfDepositsWithdrawal = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sum, curr) => {
+      // curr > 0 ? (sum.deposit += curr) : (sum.withdrawals += curr);
+      sum[curr > 0 ? 'deposit' : 'withdrawals'] += curr;
+      return sum;
+    },
+    { deposit: 0, withdrawals: 0 }
+  );
+console.log(sumOfDepositsWithdrawal);
+
+// 4.Convert a simple function to convert string to a tidal case(All the words are capitalize except some of them )
+// e.g - this is a nice title -> THis Is a Nice Title
+const convertTitleCase = function (title) {
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word =>
+      exceptions.includes(word) ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join(' ');
+  return titleCase;
+};
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a lONG AND nice title'));
+console.log(convertTitleCase('this is a lONG AND nice title but not'));
