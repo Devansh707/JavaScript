@@ -555,7 +555,7 @@ console.log(movements, firstWithdrawal);
 console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
-*/
+
 
 //  -------- Array Method - some -----//
 console.log(movements);
@@ -581,3 +581,32 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 console.log(movements.map(deposit));
+*/
+
+// -------------- Array Methods - Flat and FlatMap --------//
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+const overAllBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+console.log(overAllBalance);
+
+const overAllBal = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overAllBal);
+
+// --- flatMap -- combines operation of map and flat , It goes only 1 degree deep
+const overAllBal2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overAllBal2);
