@@ -73,7 +73,6 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; // to basically remove/overwrite existing html element.
 
@@ -86,14 +85,13 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${move}</div>
+        <div class="movements__value">${move}INR</div>
       </div>  
   `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
@@ -105,7 +103,6 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}💶`;
-
 
   const outgoing = acc.movements
     .filter(mov => mov < 0)
@@ -143,6 +140,7 @@ btnLogin.addEventListener('click', e => {
   currentAccount = accounts.find(
     acc => acc.userName === inputLoginUsername.value
   );
+  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and Welcome message
@@ -558,7 +556,7 @@ const totalDepositsUSD = movements
 
 console.log(totalDepositsUSD);
 
-*/
+
 
 //  --------- Array Method - Find Method ------------//
 // it will not return the new array unlike the filter method, but it will return the first element that satisfies the condition.
@@ -569,8 +567,6 @@ console.log(movements, firstWithdrawal);
 console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
-
-
 
 //  -------- Array Method - some -----//
 console.log(movements);
@@ -596,7 +592,6 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 console.log(movements.map(deposit));
-
 
 // -------------- Array Methods - Flat and FlatMap --------//
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -625,7 +620,6 @@ const overAllBal2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overAllBal2);
-*/
 
 //  ----------- Sorting Arrays---------- //
 // sort method - it mutates the original array. Default It sorts on the basis of strings
@@ -663,4 +657,33 @@ console.log(movements);
 
 movements.sort((a, b) => b - a);
 console.log(movements);
+*/
 
+// -------------- More Ways of creating Arrays ---------//
+const arr = [1, 2, 3, 4, 5, 65, 6];
+console.log([1, 2, 3, 4, 5, 65, 6]);
+console.log(new Array(1, 2, 3, 4, 5, 6, 7, 7));
+
+const x = new Array(7);
+console.log(x);
+console.log(x.map(() => 5)); // nothing will happen
+
+x.fill(2, 3, 5); // fill will fill the array with the given value and mutate the original array.
+console.log(x);
+
+arr.fill(10, 4, 6);
+console.log(arr);
+
+// ------------------------------- Array.from ----------------------
+const y = Array.from({ length: 7 }, () => 13);
+console.log(y);
+const z = Array.from({ length: 7 }, (_, i) => (i + 1) * 11);
+console.log(z);
+
+labelBalance.addEventListener('click', () => {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsUI);
+  console.log(movementsUI.map(el => Number(el.textContent.replace('INR', ''))));
+});
