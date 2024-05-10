@@ -73,10 +73,12 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = ''; // to basically remove/overwrite existing html element.
 
-  movements.forEach(function (move, i) {
+  const moves = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  moves.forEach(function (move, i) {
     const type = move > 0 ? 'deposit' : 'withdrawal';
     const html = `
       <div class="movements__row">
@@ -90,7 +92,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-// console.log(containerMovements.innerHTML);
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
@@ -194,6 +195,15 @@ btnTransfer.addEventListener('click', e => {
     console.log('Invalid Credentials');
   }
   inputTransferAmount.value = inputTransferTo.value = '';
+});
+
+let sorted = false;
+btnSort.addEventListener('click', e => {
+  e.preventDefault();
+
+  // sorted = sorted ? false : true;
+  sorted = !sorted;
+  displayMovements(movements, sorted);
 });
 
 btnLoan.addEventListener('click', e => {
@@ -581,7 +591,7 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 console.log(movements.map(deposit));
-*/
+
 
 // -------------- Array Methods - Flat and FlatMap --------//
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
@@ -610,3 +620,41 @@ const overAllBal2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overAllBal2);
+*/
+
+//  ----------- Sorting Arrays---------- //
+// sort method - it mutates the original array. Default It sorts on the basis of strings
+// strings
+const owners = ['Marta', 'Jonas', 'Zach', 'Adam'];
+console.log(owners.sort());
+console.log(owners);
+
+// Numbers
+console.log(movements);
+// console.log(movements.sort());
+
+// we have to write a compare callback function for numbers
+// return < 0, A, B
+// return > 0, B, A
+
+// Ascending
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+});
+
+console.log(movements);
+
+// Descending
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+
+console.log(movements);
+
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+movements.sort((a, b) => b - a);
+console.log(movements);
