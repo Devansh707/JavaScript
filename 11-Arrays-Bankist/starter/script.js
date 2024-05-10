@@ -566,3 +566,18 @@ console.log(movements.includes(-130));
 //  checks for condition and returns boolean value
 console.log(movements.some(mov => mov === -130));
 console.log(movements.some(mov => mov > 500));
+
+//  ---------- Array method - every method --------//
+// only returns true if every/all element satisfies/passes the condition/check, only then the every method returns true
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+console.log(`----------------------------------------------------------`);
+
+// One Separate call backs function and use multiple times same function
+
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+console.log(movements.map(deposit));
