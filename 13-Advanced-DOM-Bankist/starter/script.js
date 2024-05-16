@@ -2,13 +2,14 @@
 
 ///////////////////////////////////////
 // Modal window
-
+/*
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -18,8 +19,7 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -29,3 +29,41 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+*/
+
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
+
+const headerSection = document.querySelector('.header');
+const allSection = document.querySelectorAll('.section');
+
+console.log(headerSection);
+console.log(allSection);
+
+document.getElementById('#section--1');
+const allButton = document.getElementsByTagName('button');
+console.log(allButton);
+
+console.log(document.getElementsByClassName('btn'));
+
+//  ------ Creating and Inserting Elements ------ //
+//.insertAdjacentHTML
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.textContent =
+  'We use cookied for improved functionality and analytics.';
+message.innerHTML =
+  'We use cookied for improved functionality and analytics. <button class = "btn--close-cookie"> Got it! </button>';
+
+// headerSection.prepend(message);
+headerSection.append(message);
+// headerSection.append(message.cloneNode(true));
+
+// headerSection.before(message);
+headerSection.after(message);
+
+//  --------- Delete Elements --------//
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', message.remove()); //message.parentElement.removeChild(message);
