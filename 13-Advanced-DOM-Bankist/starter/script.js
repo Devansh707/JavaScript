@@ -31,15 +31,15 @@ document.addEventListener('keydown', function (e) {
 });
 */
 
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
+// console.log(document.documentElement);
+// console.log(document.head);
+// console.log(document.body);
 
 const headerSection = document.querySelector('.header');
 const allSection = document.querySelectorAll('.section');
 
-console.log(headerSection);
-console.log(allSection);
+// console.log(headerSection);
+// console.log(allSection);
 
 document.getElementById('#section--1');
 const allButton = document.getElementsByTagName('button');
@@ -57,13 +57,63 @@ message.innerHTML =
   'We use cookied for improved functionality and analytics. <button class = "btn--close-cookie"> Got it! </button>';
 
 // headerSection.prepend(message);
-headerSection.append(message);
+// headerSection.append(message);
 // headerSection.append(message.cloneNode(true));
 
 // headerSection.before(message);
 headerSection.after(message);
 
 //  --------- Delete Elements --------//
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', message.remove()); //message.parentElement.removeChild(message);
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', message.remove()); //message.parentElement.removeChild(message);
+
+// ----- Styles ---- //
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// ---- Attributes ------------ //
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beautiful minimalist logo';
+console.log(logo.alt);
+
+// non standard
+
+console.log(logo.designer);
+console.log(logo.getAttribute('designer'));
+
+logo.setAttribute('comapany', 'Bankist');
+
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href);
+console.log(link.getAttribute('href'));
+
+// ----- Data ---- //
+
+console.log(logo.dataset.versionNumber);
+
+// ------ classes ---- //
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c');
+
+// Don't use , not recommended as it would override all the existing
+logo.className = 'jonas';
